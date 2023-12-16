@@ -38,6 +38,14 @@ class AuthService {
         await realm.subscriptions.waitForSynchronization();
       }
 
+      //Delete All Objects
+      /*
+      realm.write(() {
+        realm.deleteAll<UserProfile>();
+        realm.deleteAll<Task>();
+      });
+      */
+
       UserProfileService.instance.createIfNotExists(email);
       userProfile = UserProfileService.instance.getByEmail(email);
       return true;
