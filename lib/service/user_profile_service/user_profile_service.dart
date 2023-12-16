@@ -8,7 +8,7 @@ class UserProfileService extends RealmBaseService<UserProfile> {
   static SchemaObject schema = UserProfile.schema;
 
   createIfNotExists(String email) {
-    var users = UserProfileService.instance.getList();
+    var users = UserProfileService.instance.get();
     var user = users.where((i) => i.email == email).toList();
     if (user.isEmpty) {
       add(UserProfile(
@@ -28,7 +28,7 @@ class UserProfileService extends RealmBaseService<UserProfile> {
   }
 
   UserProfile? getByEmail(String email) {
-    var users = UserProfileService.instance.getList();
+    var users = UserProfileService.instance.get();
     var user = users.where((i) => i.email == email).toList();
     if (user.isNotEmpty) {
       return user.first;
