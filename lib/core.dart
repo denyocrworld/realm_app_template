@@ -5,9 +5,7 @@ it means you have to rename it to something more unique.
 */
 export 'package:realm_app/config.dart';
 export 'package:realm_app/core_package.dart';
-export 'package:realm_app/demo.dart';
 export 'package:realm_app/env.dart';
-export 'package:realm_app/mobx_util.dart';
 export 'package:realm_app/module/admin/admin_dashboard/controller/admin_dashboard_controller.dart';
 export 'package:realm_app/module/admin/admin_dashboard/view/admin_dashboard_view.dart';
 export 'package:realm_app/module/admin/admin_main_navigation/controller/admin_main_navigation_controller.dart';
@@ -40,7 +38,6 @@ export 'package:realm_app/service/realm_service/realm_base_service.dart';
 export 'package:realm_app/service/realm_service/realm_syncronizer.dart';
 export 'package:realm_app/service/task_service/task_service.dart';
 export 'package:realm_app/service/user_profile_service/user_profile_service.dart';
-export 'package:realm_app/setup.dart';
 export 'package:realm_app/shared/theme/theme.dart';
 export 'package:realm_app/shared/theme/theme_config.dart';
 export 'package:realm_app/shared/theme/theme_dark.dart';
