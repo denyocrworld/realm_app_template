@@ -1,0 +1,26 @@
+{
+    "modules": [
+        "auth/login",
+        "user/user_main_navigation",
+        "user/user_dashboard",
+        "user/user_profile",
+        "user/user_task_list",
+        "user/user_task_form",
+        "admin/admin_main_navigation",
+        "admin/admin_dashboard",
+        "admin/admin_profile",
+        "admin/admin_user_list",
+        "admin/admin_user_form",
+        "admin/admin_task_list",
+        "admin/admin_task_form"
+    ],
+    "module_directory_name": "module",
+    "experimental_mode": false,
+    "learning_mode": false,
+    "unfreezed": true,
+    "use_cubit": false,
+    "ignore_core_generator_for_directories": [
+        "lib/model",
+        "lib/models"
+    ]
+}
