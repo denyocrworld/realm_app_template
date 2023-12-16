@@ -8,7 +8,10 @@ class UserProfileService extends RealmBaseService<UserProfile> {
   static SchemaObject schema = UserProfile.schema;
 
   createIfNotExists(String email) {
+    pg("Check if user exists: $email");
     var users = UserProfileService.instance.get();
+    pg("Check if user exists: get Success");
+
     var user = users.where((i) => i.email == email).toList();
     if (user.isEmpty) {
       add(UserProfile(

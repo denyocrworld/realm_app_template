@@ -17,7 +17,7 @@ class AuthService {
   static cleanUserData() async {
     var users = UserProfileService.instance.get();
     for (var user in users) {
-      await UserProfileService.instance.delete(user as UserProfile);
+      await UserProfileService.instance.delete(user);
     }
   }
 

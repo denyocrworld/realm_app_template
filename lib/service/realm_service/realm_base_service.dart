@@ -41,11 +41,23 @@ class RealmBaseService<T extends RealmObject> {
     return realm.query<T>(realmQuery, arguments).changes;
   }
 
+  RealmResults _get({
+    String query = "",
+    List<Object?> arguments = const [],
+  }) {
+    var sortQuery = "TRUEPREDICATE SORT(_id ASC)";
+    var realmQuery = sortQuery;
+    if (query.isNotEmpty) {
+      realmQuery = "$query && $sortQuery";
+    }
+    return realm.query<T>(realmQuery, arguments);
+  }
+
   List<T> get() {
     List<T> users = [];
-    var res = get();
+    var res = _get();
     for (var index = 0; index < res.length; index++) {
-      var userProfile = res[index];
+      var userProfile = res[index] as T;
       users.add(userProfile);
     }
     return users;
