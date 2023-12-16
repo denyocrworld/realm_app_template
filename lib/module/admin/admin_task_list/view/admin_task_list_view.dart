@@ -53,7 +53,7 @@ class AdminTaskListView extends StatefulWidget {
                   onDismiss: () => controller.delete(item),
                   child: InkWell(
                     onTap: () async {
-                      await Get.to(UserTaskFormView(
+                      await Get.to(AdminTaskFormView(
                         item: item,
                       ));
                     },
