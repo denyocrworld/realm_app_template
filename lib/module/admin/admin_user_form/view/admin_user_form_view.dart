@@ -54,16 +54,7 @@ class AdminUserFormView extends StatefulWidget {
               QDropdownField(
                 label: "Role",
                 validator: Validator.required,
-                items: [
-                  {
-                    "label": "Admin",
-                    "value": "Admin",
-                  },
-                  {
-                    "label": "User",
-                    "value": "User",
-                  }
-                ],
+                items: ds.roles,
                 value: controller.role,
                 onChanged: (value, label) {
                   controller.role = value;

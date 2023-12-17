@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
+import 'package:realm_app/shared/widget/realm/realm_delete.dart';
 
 class AdminTaskListView extends StatefulWidget {
   AdminTaskListView({Key? key}) : super(key: key);
@@ -14,39 +15,13 @@ class AdminTaskListView extends StatefulWidget {
       appBar: AppBar(
         title: Text("AdminTaskList"),
         actions: [
-          if (kDebugMode)
-            IconButton(
-              onPressed: () {
-                TaskService.instance.deleteAll();
-              },
-              icon: Icon(
-                Icons.delete_forever,
-                size: 24.0,
-              ),
-            ),
+          RealmDelete(TaskService.instance),
         ],
       ),
       body: Column(
         children: [
           QCategoryPicker(
-            items: [
-              {
-                "label": "Pending",
-                "value": "Pending",
-              },
-              {
-                "label": "Ongoing",
-                "value": "Ongoing",
-              },
-              {
-                "label": "Review",
-                "value": "Review",
-              },
-              {
-                "label": "Done",
-                "value": "Done",
-              }
-            ],
+            items: ds.status,
             value: controller.status,
             validator: Validator.required,
             onChanged: (index, label, value, item) {
