@@ -22,10 +22,6 @@ export 'package:realm_app/module/admin/admin_user_list/controller/admin_user_lis
 export 'package:realm_app/module/admin/admin_user_list/view/admin_user_list_view.dart';
 export 'package:realm_app/module/auth/login/controller/login_controller.dart';
 export 'package:realm_app/module/auth/login/view/login_view.dart';
-export 'package:realm_app/module/generated/user_profile/user_profile_form/controller/user_profile_form_controller.dart';
-export 'package:realm_app/module/generated/user_profile/user_profile_form/view/user_profile_form_view.dart';
-export 'package:realm_app/module/generated/user_profile/user_profile_list/controller/user_profile_list_controller.dart';
-export 'package:realm_app/module/generated/user_profile/user_profile_list/view/user_profile_list_view.dart';
 export 'package:realm_app/module/user/user_dashboard/controller/user_dashboard_controller.dart';
 export 'package:realm_app/module/user/user_dashboard/view/user_dashboard_view.dart';
 export 'package:realm_app/module/user/user_main_navigation/controller/user_main_navigation_controller.dart';
