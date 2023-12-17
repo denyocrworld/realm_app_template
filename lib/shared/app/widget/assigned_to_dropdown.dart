@@ -39,3 +39,16 @@ class AssignedToDropdownField extends StatelessWidget {
     );
   }
 }
+
+/*
+//#TEMPLATE dropdown_assigned_to
+AssignedToDropdownField(
+  label: "Assigned To",
+  validator: Validator.required,
+  value: controller.assignedTo,
+  onChanged: (value, label) {
+    controller.assignedTo = value;
+  },
+),
+//#END
+*/

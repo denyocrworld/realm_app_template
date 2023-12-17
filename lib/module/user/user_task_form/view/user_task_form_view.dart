@@ -42,24 +42,7 @@ class UserTaskFormView extends StatefulWidget {
                 QDropdownField(
                   label: "Status",
                   validator: Validator.required,
-                  items: [
-                    {
-                      "label": "Pending",
-                      "value": "Pending",
-                    },
-                    {
-                      "label": "Ongoing",
-                      "value": "Ongoing",
-                    },
-                    {
-                      "label": "Review",
-                      "value": "Review",
-                    },
-                    {
-                      "label": "Done",
-                      "value": "Done",
-                    },
-                  ],
+                  items: ds.status,
                   value: controller.status,
                   onChanged: (value, label) {
                     controller.status = value;

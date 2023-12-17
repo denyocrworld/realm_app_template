@@ -43,46 +43,18 @@ class AdminTaskFormView extends StatefulWidget {
                 QDropdownField(
                   label: "Status",
                   validator: Validator.required,
-                  items: [
-                    {
-                      "label": "Pending",
-                      "value": "Pending",
-                    },
-                    {
-                      "label": "Ongoing",
-                      "value": "Ongoing",
-                    },
-                    {
-                      "label": "Review",
-                      "value": "Review",
-                    },
-                    {
-                      "label": "Done",
-                      "value": "Done",
-                    },
-                  ],
+                  items: ds.status,
                   value: controller.status,
                   onChanged: (value, label) {
                     controller.status = value;
                   },
                 ),
-                RealmListView<UserProfile>(
-                  stream: UserProfileService.instance.snapshot(),
-                  itemsBuilder: (items) {
-                    return QDropdownField(
-                      label: "Assigned To",
-                      validator: Validator.required,
-                      items: items.map((e) {
-                        return {
-                          "label": e!.name,
-                          "value": e,
-                        };
-                      }).toList(),
-                      value: controller.assignedTo,
-                      onChanged: (value, label) {
-                        controller.assignedTo = value;
-                      },
-                    );
+                AssignedToDropdownField(
+                  label: "Assigned To",
+                  validator: Validator.required,
+                  value: controller.assignedTo,
+                  onChanged: (value, label) {
+                    controller.assignedTo = value;
                   },
                 ),
               ],

@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-mixin TaskListDataController {
-  deleteData(Task item) {
-    TaskService.instance.delete(item);
-  }
-}
-
-class TaskListController extends State<TaskListView>
-    with BasicState, TaskListDataController {
+class TaskListController extends State<TaskListView> {
   static late TaskListController instance;
   late TaskListView view;
 
@@ -27,7 +20,7 @@ class TaskListController extends State<TaskListView>
 
   delete(Task item) {
     showLoading();
-    deleteData(item);
+    TaskService.instance.delete(item);
     hideLoading();
   }
 

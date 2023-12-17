@@ -47,8 +47,6 @@ export 'package:realm_app/service/realm_service/realm_base_service.dart';
 export 'package:realm_app/service/realm_service/realm_syncronizer.dart';
 export 'package:realm_app/service/task_service/task_service.dart';
 export 'package:realm_app/service/user_profile_service/user_profile_service.dart';
-export 'package:realm_app/shared/app/util/basic_handler.dart';
-export 'package:realm_app/shared/app/util/basic_state.dart';
 export 'package:realm_app/shared/app/widget/assigned_to_dropdown.dart';
 export 'package:realm_app/shared/app/widget/user_profile_dropdown.dart';
 export 'package:realm_app/shared/theme/theme.dart';

@@ -2,14 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-mixin UserProfileListDataController {
-  deleteData(UserProfile item) {
-    UserProfileService.instance.delete(item);
-  }
-}
-
-class UserProfileListController extends State<UserProfileListView>
-    with BasicState, UserProfileListDataController {
+class UserProfileListController extends State<UserProfileListView> {
   static late UserProfileListController instance;
   late UserProfileListView view;
 
@@ -27,7 +20,7 @@ class UserProfileListController extends State<UserProfileListView>
 
   delete(UserProfile item) {
     showLoading();
-    deleteData(item);
+    UserProfileService.instance.delete(item);
     hideLoading();
   }
 

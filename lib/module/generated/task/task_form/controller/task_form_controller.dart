@@ -3,7 +3,47 @@ import 'package:realm/realm.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-mixin TaskFormDataController {
+class TaskFormController extends State<TaskFormView> {
+  static late TaskFormController instance;
+  late TaskFormView view;
+
+  @override
+  void initState() {
+    instance = this;
+    if (isEditMode) {
+      createdBy = current!.createdBy;
+      assignedTo = current!.assignedTo;
+      createdAt = current!.createdAt;
+      taskName = current!.taskName;
+      description = current!.description;
+      status = current!.status;
+    }
+    super.initState();
+  }
+
+  @override
+  void dispose() => super.dispose();
+
+  @override
+  Widget build(BuildContext context) => widget.build(context, this);
+
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool loading = false;
+
+  bool get isNotValid {
+    bool isValid = formKey.currentState!.validate();
+    return !isValid;
+  }
+
+  bool get isValid {
+    bool isValid = formKey.currentState!.validate();
+    return isValid;
+  }
+
+  Task? get current => widget.item;
+  bool get isEditMode => current != null;
+  bool get isCreateMode => current == null;
+
   UserProfile? createdBy;
   UserProfile? assignedTo;
   DateTime? createdAt;
@@ -11,16 +51,14 @@ mixin TaskFormDataController {
   String? description;
   String? status;
 
-  loadCurrentData(Task current) {
-    createdBy = current.createdBy;
-    assignedTo = current.assignedTo;
-    createdAt = current.createdAt;
-    taskName = current.taskName;
-    description = current.description;
-    status = current.status;
+  save() {
+    if (isNotValid) return;
+    if (isCreateMode) create();
+    if (isEditMode) update();
   }
 
-  createData() {
+  create() {
+    showLoading();
     TaskService.instance.add(
       Task(
         ObjectId(),
@@ -32,11 +70,15 @@ mixin TaskFormDataController {
         status: status,
       ),
     );
+    hideLoading();
+    Get.back();
+    ss("Data created");
   }
 
-  updateData(Task current) {
+  update() {
+    showLoading();
     TaskService.instance.update(
-      id: current.id,
+      id: current!.id,
       update: (item) {
         item.createdBy = createdBy;
         item.assignedTo = assignedTo;
@@ -46,38 +88,8 @@ mixin TaskFormDataController {
         item.status = status;
       },
     );
+    hideLoading();
+    Get.back();
+    ss("Data updated");
   }
-}
-
-class TaskFormController extends State<TaskFormView>
-    with BasicState, TaskFormDataController {
-  static late TaskFormController instance;
-  late TaskFormView view;
-
-  @override
-  void initState() {
-    instance = this;
-    if (isEditMode) {
-      loadCurrentData(widget.item!);
-    }
-    super.initState();
-  }
-
-  @override
-  void dispose() => super.dispose();
-
-  @override
-  Widget build(BuildContext context) => widget.build(context, this);
-
-  bool get isEditMode => widget.item != null;
-  bool get isCreateMode => widget.item == null;
-
-  save() {
-    if (isNotValid) return;
-    if (isCreateMode) create();
-    if (isEditMode) update();
-  }
-
-  create() => handleCreate(createData);
-  update() => handleUpdate(updateData, widget.item!);
 }
