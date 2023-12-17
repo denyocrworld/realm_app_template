@@ -15,9 +15,16 @@ class LoginView extends StatefulWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                "assets/icon/icon.png",
-                height: 160,
+              GestureDetector(
+                onLongPress: () async {
+                  showLoading();
+                  await AuthService.deleteTemporaryData();
+                  hideLoading();
+                },
+                child: Image.asset(
+                  "assets/icon/icon.png",
+                  height: 160,
+                ),
               ),
               QTextField(
                 label: "Email",
