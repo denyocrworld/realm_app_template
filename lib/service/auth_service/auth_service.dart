@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
 import 'package:realm_app/model/model.dart';
 import 'package:realm/realm.dart';
 import 'package:realm_app/core.dart';
@@ -38,18 +41,11 @@ class AuthService {
         await realm.subscriptions.waitForSynchronization();
       }
 
-      //Delete All Objects
-      /*
-      realm.write(() {
-        realm.deleteAll<UserProfile>();
-        realm.deleteAll<Task>();
-      });
-      */
-
       UserProfileService.instance.createIfNotExists(email);
       userProfile = UserProfileService.instance.getByEmail(email);
       return true;
     } on Exception catch (error) {
+      await deleteTemporaryData();
       print(error);
       return false;
     }
@@ -83,5 +79,22 @@ class AuthService {
       AuthService._currentUser = RealmAppService.app.currentUser;
     }
     return isLoggedIn;
+  }
+
+  static Future<void> deleteTemporaryData() async {
+    try {
+      final tempDir = await getTemporaryDirectory();
+      final tempDirContents = tempDir.listSync(recursive: true);
+      for (var entity in tempDirContents) {
+        if (entity is File) {
+          await entity.delete();
+        } else if (entity is Directory) {
+          await entity.delete(recursive: true);
+        }
+      }
+      print('Temporary data deleted successfully');
+    } catch (e) {
+      print('Error deleting temporary data: $e');
+    }
   }
 }

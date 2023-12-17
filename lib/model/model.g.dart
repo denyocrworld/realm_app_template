@@ -82,10 +82,12 @@ class UserProfile extends _UserProfile
   }
 }
 
+// ignore_for_file: type=lint
 class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
   Task(
     ObjectId id, {
     UserProfile? createdBy,
+    UserProfile? assignedTo,
     DateTime? createdAt,
     String? taskName,
     String? description,
@@ -93,6 +95,7 @@ class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
   }) {
     RealmObjectBase.set(this, '_id', id);
     RealmObjectBase.set(this, 'created_by', createdBy);
+    RealmObjectBase.set(this, 'assigned_to', assignedTo);
     RealmObjectBase.set(this, 'created_at', createdAt);
     RealmObjectBase.set(this, 'task_name', taskName);
     RealmObjectBase.set(this, 'description', description);
@@ -112,6 +115,13 @@ class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
   @override
   set createdBy(covariant UserProfile? value) =>
       RealmObjectBase.set(this, 'created_by', value);
+
+  @override
+  UserProfile? get assignedTo =>
+      RealmObjectBase.get<UserProfile>(this, 'assigned_to') as UserProfile?;
+  @override
+  set assignedTo(covariant UserProfile? value) =>
+      RealmObjectBase.set(this, 'assigned_to', value);
 
   @override
   DateTime? get createdAt =>
@@ -154,6 +164,8 @@ class Task extends _Task with RealmEntity, RealmObjectBase, RealmObject {
           mapTo: '_id', primaryKey: true),
       SchemaProperty('createdBy', RealmPropertyType.object,
           mapTo: 'created_by', optional: true, linkTarget: 'UserProfile'),
+      SchemaProperty('assignedTo', RealmPropertyType.object,
+          mapTo: 'assigned_to', optional: true, linkTarget: 'UserProfile'),
       SchemaProperty('createdAt', RealmPropertyType.timestamp,
           mapTo: 'created_at', optional: true),
       SchemaProperty('taskName', RealmPropertyType.string,

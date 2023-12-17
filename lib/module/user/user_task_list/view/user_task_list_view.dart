@@ -55,8 +55,13 @@ class UserTaskListView extends StatefulWidget {
           ),
           Expanded(
             child: RealmListView<Task>(
-              stream: TaskService.instance
-                  .snapshot(query: "status == '${controller.status}'"),
+              stream: TaskService.instance.snapshot(
+                query: "status == \$0 && assigned_to == \$1",
+                arguments: [
+                  controller.status,
+                  userProfile,
+                ],
+              ),
               padding: const EdgeInsets.symmetric(
                 horizontal: 12.0,
               ),
@@ -65,8 +70,6 @@ class UserTaskListView extends StatefulWidget {
                   onDismiss: () => controller.delete(item),
                   child: InkWell(
                     onTap: () async {
-                      if (item.status == "Review" || item.status == "Done")
-                        return;
                       await Get.to(UserTaskFormView(
                         item: item,
                       ));

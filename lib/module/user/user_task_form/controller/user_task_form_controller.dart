@@ -27,12 +27,14 @@ class UserTaskFormController extends State<UserTaskFormView> {
   String? taskName;
   String? description;
   String? status = "Pending";
+  UserProfile? assignedTo;
 
   loadCurrentData() {
     if (!isEditMode) return;
     taskName = widget.item!.taskName;
     description = widget.item!.description;
     status = widget.item!.status;
+    assignedTo = widget.item!.assignedTo;
   }
 
   save() {
@@ -51,6 +53,7 @@ class UserTaskFormController extends State<UserTaskFormView> {
         ObjectId(),
         createdAt: DateTime.now(),
         createdBy: userProfile,
+        assignedTo: userProfile,
         taskName: taskName,
         description: description,
         status: status,
@@ -67,6 +70,7 @@ class UserTaskFormController extends State<UserTaskFormView> {
       id: widget.item!.id,
       update: (item) {
         item.taskName = taskName;
+        item.assignedTo = assignedTo;
         item.description = description;
         item.status = status;
       },

@@ -20,7 +20,12 @@ class UserDashboardView extends StatefulWidget {
                 children: [
                   Expanded(
                     child: RealmCounter(
-                      stream: TaskService.instance.snapshot(),
+                      stream: TaskService.instance.snapshot(
+                        query: "assigned_to == \$0",
+                        arguments: [
+                          userProfile,
+                        ],
+                      ),
                       itemBuilder: (items) {
                         return QStatistic(
                           label: "Total",
@@ -33,7 +38,11 @@ class UserDashboardView extends StatefulWidget {
                   Expanded(
                     child: RealmCounter(
                       stream: TaskService.instance.snapshot(
-                        query: "status == 'Pending'",
+                        query: "status == \$0 && assigned_to == \$1",
+                        arguments: [
+                          "Pending",
+                          userProfile,
+                        ],
                       ),
                       itemBuilder: (items) {
                         return QStatistic(
@@ -52,7 +61,11 @@ class UserDashboardView extends StatefulWidget {
                   Expanded(
                     child: RealmCounter(
                       stream: TaskService.instance.snapshot(
-                        query: "status == 'Ongoing'",
+                        query: "status == \$0 && assigned_to == \$1",
+                        arguments: [
+                          "Ongoing",
+                          userProfile,
+                        ],
                       ),
                       itemBuilder: (items) {
                         return QStatistic(
@@ -67,7 +80,11 @@ class UserDashboardView extends StatefulWidget {
                   Expanded(
                     child: RealmCounter(
                       stream: TaskService.instance.snapshot(
-                        query: "status == 'Review'",
+                        query: "status == \$0 && assigned_to == \$1",
+                        arguments: [
+                          "Review",
+                          userProfile,
+                        ],
                       ),
                       itemBuilder: (items) {
                         return QStatistic(

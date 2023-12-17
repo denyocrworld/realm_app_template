@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realm/realm.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
@@ -51,20 +52,37 @@ class AdminTaskFormView extends StatefulWidget {
                       "label": "Ongoing",
                       "value": "Ongoing",
                     },
-                    if (isAdmin) ...[
-                      {
-                        "label": "Review",
-                        "value": "Review",
-                      },
-                      {
-                        "label": "Done",
-                        "value": "Done",
-                      },
-                    ],
+                    {
+                      "label": "Review",
+                      "value": "Review",
+                    },
+                    {
+                      "label": "Done",
+                      "value": "Done",
+                    },
                   ],
                   value: controller.status,
                   onChanged: (value, label) {
                     controller.status = value;
+                  },
+                ),
+                RealmListView<UserProfile>(
+                  stream: UserProfileService.instance.snapshot(),
+                  itemsBuilder: (items) {
+                    return QDropdownField(
+                      label: "Assigned To",
+                      validator: Validator.required,
+                      items: items.map((e) {
+                        return {
+                          "label": e!.name,
+                          "value": e,
+                        };
+                      }).toList(),
+                      value: controller.assignedTo,
+                      onChanged: (value, label) {
+                        controller.assignedTo = value;
+                      },
+                    );
                   },
                 ),
               ],

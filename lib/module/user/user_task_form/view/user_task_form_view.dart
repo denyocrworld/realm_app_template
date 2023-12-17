@@ -55,17 +55,37 @@ class UserTaskFormView extends StatefulWidget {
                       "label": "Review",
                       "value": "Review",
                     },
-                    if (isAdmin) ...[
-                      {
-                        "label": "Done",
-                        "value": "Done",
-                      },
-                    ],
+                    {
+                      "label": "Done",
+                      "value": "Done",
+                    },
                   ],
                   value: controller.status,
                   onChanged: (value, label) {
                     controller.status = value;
                   },
+                ),
+                AbsorbPointer(
+                  absorbing: isUser,
+                  child: RealmListView<UserProfile>(
+                    stream: UserProfileService.instance.snapshot(),
+                    itemsBuilder: (items) {
+                      return QDropdownField(
+                        label: "Assigned To",
+                        validator: Validator.required,
+                        items: items.map((e) {
+                          return {
+                            "label": e!.name,
+                            "value": e,
+                          };
+                        }).toList(),
+                        value: controller.assignedTo,
+                        onChanged: (value, label) {
+                          controller.assignedTo = value;
+                        },
+                      );
+                    },
+                  ),
                 ),
               ],
             ),

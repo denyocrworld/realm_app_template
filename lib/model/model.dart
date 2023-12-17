@@ -1,16 +1,5 @@
 import 'package:realm/realm.dart';
-
 part 'model.g.dart';
-/*
-@RealmModel()
-class _UserProfile {
-  @MapTo("_id")
-  @PrimaryKey()
-  late ObjectId id;
-  
-  //buat field2 yang dibutuhkan dibawah sini
-}
-*/
 
 @RealmModel()
 class _UserProfile {
@@ -37,6 +26,9 @@ class _Task {
 
   @MapTo("created_by")
   late _UserProfile? createdBy;
+
+  @MapTo("assigned_to")
+  late _UserProfile? assignedTo;
 
   @MapTo("created_at")
   late DateTime? createdAt;

@@ -1,18 +1,30 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
 class AdminTaskListView extends StatefulWidget {
-  const AdminTaskListView({Key? key}) : super(key: key);
+  AdminTaskListView({Key? key}) : super(key: key);
 
   Widget build(context, AdminTaskListController controller) {
     controller.view = this;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("AdminTaskList"),
-        actions: const [],
+        title: Text("AdminTaskList"),
+        actions: [
+          if (kDebugMode)
+            IconButton(
+              onPressed: () {
+                TaskService.instance.deleteAll();
+              },
+              icon: Icon(
+                Icons.delete_forever,
+                size: 24.0,
+              ),
+            ),
+        ],
       ),
       body: Column(
         children: [
@@ -45,7 +57,7 @@ class AdminTaskListView extends StatefulWidget {
             child: RealmListView<Task>(
               stream: TaskService.instance
                   .snapshot(query: "status == '${controller.status}'"),
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: 12.0,
               ),
               itemBuilder: (item, index) {
@@ -58,14 +70,14 @@ class AdminTaskListView extends StatefulWidget {
                       ));
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(
+                      margin: EdgeInsets.only(
                         bottom: 12.0,
                       ),
                       child: Card(
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: EdgeInsets.all(12.0),
                               decoration: BoxDecoration(
                                 color: primaryColor,
                                 borderRadius: BorderRadius.only(
@@ -127,7 +139,7 @@ class AdminTaskListView extends StatefulWidget {
                               ),
                             ),
                             Container(
-                              padding: const EdgeInsets.all(12.0),
+                              padding: EdgeInsets.all(12.0),
                               decoration: BoxDecoration(
                                 color: secondaryColor.withOpacity(0.6),
                                 borderRadius: BorderRadius.only(
@@ -165,7 +177,7 @@ class AdminTaskListView extends StatefulWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        child: Icon(Icons.add),
         heroTag: Key("${Random().nextInt(10000)}"),
         onPressed: () async {
           await Get.to(AdminTaskFormView());
