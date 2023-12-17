@@ -1,1 +1,1 @@
-dart pub run realm generate
+flutter clean && flutter pub get && dart pub run realm generate
