@@ -5,19 +5,19 @@ import 'package:realm_app/model/model.dart';
 
 mixin TaskFormDataController {
   UserProfile? createdBy;
-UserProfile? assignedTo;
-DateTime? createdAt;
-String? taskName;
-String? description;
-String? status;
+  UserProfile? assignedTo;
+  DateTime? createdAt;
+  String? taskName;
+  String? description;
+  String? status;
 
   loadCurrentData(Task current) {
     createdBy = current.createdBy;
-assignedTo = current.assignedTo;
-createdAt = current.createdAt;
-taskName = current.taskName;
-description = current.description;
-status = current.status;
+    assignedTo = current.assignedTo;
+    createdAt = current.createdAt;
+    taskName = current.taskName;
+    description = current.description;
+    status = current.status;
   }
 
   createData() {
@@ -25,11 +25,11 @@ status = current.status;
       Task(
         ObjectId(),
         createdBy: userProfile,
-assignedTo: assignedTo,
-createdAt: DateTime.now(),
-taskName: taskName,
-description: description,
-status: status,
+        assignedTo: assignedTo,
+        createdAt: DateTime.now(),
+        taskName: taskName,
+        description: description,
+        status: status,
       ),
     );
   }
@@ -39,11 +39,11 @@ status: status,
       id: current.id,
       update: (item) {
         item.createdBy = createdBy;
-item.assignedTo = assignedTo;
-item.createdAt = createdAt;
-item.taskName = taskName;
-item.description = description;
-item.status = status;
+        item.assignedTo = assignedTo;
+        item.createdAt = createdAt;
+        item.taskName = taskName;
+        item.description = description;
+        item.status = status;
       },
     );
   }

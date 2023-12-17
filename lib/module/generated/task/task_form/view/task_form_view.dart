@@ -20,38 +20,38 @@ class TaskFormView extends StatefulWidget {
         key: controller.formKey,
         children: [
           AssignedToDropdownField(
-  label: "Assigned To",
-  validator: Validator.required,
-  value: controller.assignedTo,
-  onChanged: (value, label) {
-    controller.assignedTo = value;
-  },
-),
-QTextField(
-  label: "Task Name",
-  validator: Validator.required,
-  value: controller.taskName,
-  onChanged: (value) {
-    controller.taskName = value;
-  },
-),
-QMemoField(
-  label: "Description",
-  validator: Validator.required,
-  value: controller.description,
-  onChanged: (value) {
-    controller.description = value;
-  },
-),
-QDropdownField(
-  label: "Status",
-  validator: Validator.required,
-  items: ds.status,
-  value: controller.status,
-  onChanged: (value, label) {
-    controller.status = value;
-  },
-),
+            label: "Assigned To",
+            validator: Validator.required,
+            value: controller.assignedTo,
+            onChanged: (value, label) {
+              controller.assignedTo = value;
+            },
+          ),
+          QTextField(
+            label: "Task Name",
+            validator: Validator.required,
+            value: controller.taskName,
+            onChanged: (value) {
+              controller.taskName = value;
+            },
+          ),
+          QMemoField(
+            label: "Description",
+            validator: Validator.required,
+            value: controller.description,
+            onChanged: (value) {
+              controller.description = value;
+            },
+          ),
+          QDropdownField(
+            label: "Status",
+            validator: Validator.required,
+            items: ds.status,
+            value: controller.status,
+            onChanged: (value, label) {
+              controller.status = value;
+            },
+          ),
         ],
       ),
       bottomNavigationBar: QActionButton(
