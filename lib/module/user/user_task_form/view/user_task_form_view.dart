@@ -72,7 +72,7 @@ class UserTaskFormView extends StatefulWidget {
                     itemsBuilder: (items) {
                       return QDropdownField(
                         label: "Assigned To",
-                        validator: Validator.required,
+                        validator: isAdmin ? Validator.required : null,
                         items: items.map((e) {
                           return {
                             "label": e!.name,

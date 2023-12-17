@@ -81,23 +81,18 @@ class AdminTaskListView extends StatefulWidget {
                               decoration: BoxDecoration(
                                 color: primaryColor,
                                 borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12.0),
-                                  topRight: Radius.circular(12.0),
+                                  topLeft: Radius.circular(8.0),
+                                  topRight: Radius.circular(8.0),
                                 ),
                               ),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
-                                  Expanded(
-                                    child: Column(
-                                      children: [
-                                        Text(
-                                          "Created At: ${item.createdAt?.dMMMykkss}",
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
+                                  Text(
+                                    "${item.createdAt?.dMMMykkss}",
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ],
@@ -113,26 +108,70 @@ class AdminTaskListView extends StatefulWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          item.taskName ?? "-",
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold,
+                                        Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Task name:",
+                                                  style: TextStyle(
+                                                    fontSize: 14.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                item.taskName ?? "-",
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Text(
-                                          item.description ?? "-",
-                                          style: TextStyle(
-                                            fontSize: 16.0,
+                                        Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Description:",
+                                                  style: TextStyle(
+                                                    fontSize: 14.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                item.description ?? "-",
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  "Status:",
+                                                  style: TextStyle(
+                                                    fontSize: 14.0,
+                                                  ),
+                                                ),
+                                              ),
+                                              Text(
+                                                item.status ?? "-",
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
-                                    ),
-                                  ),
-                                  Text(
-                                    item.status ?? "-",
-                                    style: TextStyle(
-                                      fontSize: 16.0,
                                     ),
                                   ),
                                 ],
@@ -141,10 +180,10 @@ class AdminTaskListView extends StatefulWidget {
                             Container(
                               padding: EdgeInsets.all(12.0),
                               decoration: BoxDecoration(
-                                color: secondaryColor.withOpacity(0.6),
+                                color: infoColor,
                                 borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(12.0),
-                                  bottomRight: Radius.circular(12.0),
+                                  bottomLeft: Radius.circular(8.0),
+                                  bottomRight: Radius.circular(8.0),
                                 ),
                               ),
                               child: Row(
@@ -152,12 +191,30 @@ class AdminTaskListView extends StatefulWidget {
                                   Expanded(
                                     child: Column(
                                       children: [
-                                        Text(
-                                          "Created by: ${item.createdBy?.name}",
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.white,
-                                          ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                "Created by: ${item.createdBy?.name}",
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                "Assigned to: ${item.assignedTo?.name}",
+                                                textAlign: TextAlign.right,
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ],
                                     ),
