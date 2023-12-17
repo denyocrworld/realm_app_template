@@ -6,14 +6,19 @@ class _UserProfile {
   @MapTo("_id")
   @PrimaryKey()
   late ObjectId id;
+
   @MapTo("name")
   late String? name;
+
   @MapTo("email")
   late String? email;
+
   @MapTo("password")
   late String? password;
+
   @MapTo("role")
   late String? role;
+
   @MapTo("photo")
   late String? photo;
 }
