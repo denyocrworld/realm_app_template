@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-class TaskListView extends StatefulWidget {
-  TaskListView({Key? key}) : super(key: key);
+class HUITemplateListView extends StatefulWidget {
+  HUITemplateListView({Key? key}) : super(key: key);
 
-  Widget build(context, TaskListController controller) {
+  Widget build(context, HUITemplateListController controller) {
     controller.view = this;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Task List"),
+        title: Text("HUITemplate List"),
         actions: [
           RealmDelete(TaskService.instance),
         ],
@@ -47,12 +47,12 @@ class TaskListView extends StatefulWidget {
       ),
       floatingActionButton: FloatingAction(
         onPressed: () async {
-          await Get.to(TaskFormView());
+          await Get.to(HUITemplateFormView());
         },
       ),
     );
   }
 
   @override
-  State<TaskListView> createState() => TaskListController();
+  State<HUITemplateListView> createState() => HUITemplateListController();
 }

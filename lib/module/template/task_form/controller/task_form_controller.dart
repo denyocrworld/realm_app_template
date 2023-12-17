@@ -3,7 +3,7 @@ import 'package:realm/realm.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-mixin TaskFormDataController {
+mixin HUITemplateFormDataController {
   //@VARIABLE
 
   loadCurrentData(Task current) {
@@ -29,10 +29,10 @@ mixin TaskFormDataController {
   }
 }
 
-class TaskFormController extends State<TaskFormView>
-    with BasicState, TaskFormDataController {
-  static late TaskFormController instance;
-  late TaskFormView view;
+class HUITemplateFormController extends State<HUITemplateFormView>
+    with BasicState, HUITemplateFormDataController {
+  static late HUITemplateFormController instance;
+  late HUITemplateFormView view;
 
   @override
   void initState() {

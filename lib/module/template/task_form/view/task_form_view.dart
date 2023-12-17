@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-class TaskFormView extends StatefulWidget {
+class HUITemplateFormView extends StatefulWidget {
   final Task? item;
-  const TaskFormView({
+  const HUITemplateFormView({
     Key? key,
     this.item,
   }) : super(key: key);
 
-  Widget build(context, TaskFormController controller) {
+  Widget build(context, HUITemplateFormController controller) {
     controller.view = this;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Task Form"),
+        title: const Text("HUITemplate Form"),
         actions: const [],
       ),
       body: FormColumn(
@@ -30,5 +30,5 @@ class TaskFormView extends StatefulWidget {
   }
 
   @override
-  State<TaskFormView> createState() => TaskFormController();
+  State<HUITemplateFormView> createState() => HUITemplateFormController();
 }

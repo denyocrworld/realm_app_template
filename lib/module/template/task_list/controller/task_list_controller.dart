@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-mixin TaskListDataController {
+mixin HUITemplateListDataController {
   deleteData(Task item) {
     TaskService.instance.delete(item);
   }
 }
 
-class TaskListController extends State<TaskListView>
-    with BasicState, TaskListDataController {
-  static late TaskListController instance;
-  late TaskListView view;
+class HUITemplateListController extends State<HUITemplateListView>
+    with BasicState, HUITemplateListDataController {
+  static late HUITemplateListController instance;
+  late HUITemplateListView view;
 
   @override
   void initState() {

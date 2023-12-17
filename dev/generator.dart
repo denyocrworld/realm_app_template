@@ -99,7 +99,7 @@ void main() {
         File("lib/module/generated/${m.keyName}/${m.keyName}_list/widget/_");
 
     var serviceFile =
-        File("lib/service/${m.keyName}/${m.keyName}_service.dart");
+        File("lib/service/${m.keyName}_service/${m.keyName}_service.dart");
 
     formViewFile.createSync(recursive: true);
     formControllerFile.createSync(recursive: true);
@@ -107,7 +107,6 @@ void main() {
     listControllerFile.createSync(recursive: true);
     formWidgetFile.createSync(recursive: true);
     listWidgetFile.createSync(recursive: true);
-    serviceFile.createSync(recursive: true);
 
     {
       var template = formViewTemplate.readAsStringSync().fix(m);
@@ -142,7 +141,10 @@ class TaskService extends RealmBaseService<Task> {
 """
           .trim()
           .fix(m);
-      serviceFile.writeAsStringSync(template);
+      if (serviceFile.exists() == false) {
+        serviceFile.createSync(recursive: true);
+        serviceFile.writeAsStringSync(template);
+      }
     }
   }
 }
@@ -150,8 +152,9 @@ class TaskService extends RealmBaseService<Task> {
 extension TemplateUpdater on String {
   String fix(Module m) {
     var template = this;
-    template = template.replaceAll("Task Form", "${m.titleName} Form");
-    template = template.replaceAll("Task List", "${m.titleName} List");
+    template = template.replaceAll("HUITemplate Form", "${m.titleName} Form");
+    template = template.replaceAll("HUITemplate List", "${m.titleName} List");
+    template = template.replaceAll("HUITemplate", m.className);
     template = template.replaceAll("Task", m.className);
 
     var count = 0;
