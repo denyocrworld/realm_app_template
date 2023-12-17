@@ -2,56 +2,63 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-class TaskFormView extends StatefulWidget {
-  final Task? item;
-  const TaskFormView({
+class UserProfileFormView extends StatefulWidget {
+  final UserProfile? item;
+  const UserProfileFormView({
     Key? key,
     this.item,
   }) : super(key: key);
 
-  Widget build(context, TaskFormController controller) {
+  Widget build(context, UserProfileFormController controller) {
     controller.view = this;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("TaskForm"),
+        title: const Text("User Profile Form"),
         actions: const [],
       ),
       body: FormColumn(
         key: controller.formKey,
         children: [
           QTextField(
-            label: "Task name",
-            validator: Validator.required,
-            value: controller.taskName,
-            onChanged: (value) {
-              controller.taskName = value;
-            },
-          ),
-          QMemoField(
-            label: "Description",
-            validator: Validator.required,
-            value: controller.description,
-            onChanged: (value) {
-              controller.description = value;
-            },
-          ),
-          QDropdownField(
-            label: "Status",
-            validator: Validator.required,
-            items: ds.status,
-            value: controller.status,
-            onChanged: (value, label) {
-              controller.status = value;
-            },
-          ),
-          UserProfileDropdownField(
-            label: "Assigned To",
-            validator: Validator.required,
-            value: controller.assignedTo,
-            onChanged: (value, label) {
-              controller.assignedTo = value;
-            },
-          ),
+  label: "Name",
+  validator: Validator.required,
+  value: controller.name,
+  onChanged: (value) {
+    controller.name = value;
+  },
+),
+QTextField(
+  label: "Email",
+  validator: Validator.required,
+  value: controller.email,
+  onChanged: (value) {
+    controller.email = value;
+  },
+),
+QTextField(
+  label: "Password",
+  validator: Validator.required,
+  value: controller.password,
+  onChanged: (value) {
+    controller.password = value;
+  },
+),
+QTextField(
+  label: "Role",
+  validator: Validator.required,
+  value: controller.role,
+  onChanged: (value) {
+    controller.role = value;
+  },
+),
+QImagePicker(
+  label: "Photo",
+  validator: Validator.required,
+  value: controller.photo,
+  onChanged: (value) {
+    controller.photo = value;
+  },
+),
         ],
       ),
       bottomNavigationBar: QActionButton(
@@ -62,5 +69,5 @@ class TaskFormView extends StatefulWidget {
   }
 
   @override
-  State<TaskFormView> createState() => TaskFormController();
+  State<UserProfileFormView> createState() => UserProfileFormController();
 }

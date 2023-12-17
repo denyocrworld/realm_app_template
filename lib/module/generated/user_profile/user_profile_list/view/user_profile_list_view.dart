@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-class TaskListView extends StatefulWidget {
-  TaskListView({Key? key}) : super(key: key);
+class UserProfileListView extends StatefulWidget {
+  UserProfileListView({Key? key}) : super(key: key);
 
-  Widget build(context, TaskListController controller) {
+  Widget build(context, UserProfileListController controller) {
     controller.view = this;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("TaskList"),
+        title: Text("User Profile List"),
         actions: [
-          RealmDelete(TaskService.instance),
+          RealmDelete(UserProfileService.instance),
         ],
       ),
       body: Column(
@@ -26,8 +26,8 @@ class TaskListView extends StatefulWidget {
             },
           ),
           Expanded(
-            child: RealmListView<Task>(
-              stream: TaskService.instance
+            child: RealmListView<UserProfile>(
+              stream: UserProfileService.instance
                   .snapshot(query: "status == '${controller.status}'"),
               padding: EdgeInsets.symmetric(
                 horizontal: 12.0,
@@ -36,8 +36,8 @@ class TaskListView extends StatefulWidget {
                 return QDismissible(
                   onDismiss: () => controller.delete(item),
                   child: ListTile(
-                    title: Text(item.taskName ?? "-"),
-                    subtitle: Text(item.description ?? "-"),
+                    title: Text(item.name ?? "-"),
+                    subtitle: Text(item.email ?? "-"),
                   ),
                 );
               },
@@ -47,12 +47,12 @@ class TaskListView extends StatefulWidget {
       ),
       floatingActionButton: FloatingAction(
         onPressed: () async {
-          await Get.to(TaskFormView());
+          await Get.to(UserProfileFormView());
         },
       ),
     );
   }
 
   @override
-  State<TaskListView> createState() => TaskListController();
+  State<UserProfileListView> createState() => UserProfileListController();
 }

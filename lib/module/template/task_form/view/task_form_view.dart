@@ -13,45 +13,13 @@ class TaskFormView extends StatefulWidget {
     controller.view = this;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("TaskForm"),
+        title: const Text("Task Form"),
         actions: const [],
       ),
       body: FormColumn(
         key: controller.formKey,
         children: [
-          QTextField(
-            label: "Task name",
-            validator: Validator.required,
-            value: controller.taskName,
-            onChanged: (value) {
-              controller.taskName = value;
-            },
-          ),
-          QMemoField(
-            label: "Description",
-            validator: Validator.required,
-            value: controller.description,
-            onChanged: (value) {
-              controller.description = value;
-            },
-          ),
-          QDropdownField(
-            label: "Status",
-            validator: Validator.required,
-            items: ds.status,
-            value: controller.status,
-            onChanged: (value, label) {
-              controller.status = value;
-            },
-          ),
-          UserProfileDropdownField(
-            label: "Assigned To",
-            validator: Validator.required,
-            value: controller.assignedTo,
-            onChanged: (value, label) {
-              controller.assignedTo = value;
-            },
-          ),
+          //@FORM
         ],
       ),
       bottomNavigationBar: QActionButton(

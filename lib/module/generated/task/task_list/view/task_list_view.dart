@@ -10,7 +10,7 @@ class TaskListView extends StatefulWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("TaskList"),
+        title: Text("Task List"),
         actions: [
           RealmDelete(TaskService.instance),
         ],

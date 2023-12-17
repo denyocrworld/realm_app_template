@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-class UserProfileDropdownField extends StatelessWidget {
+class AssignedToDropdownField extends StatelessWidget {
   final String label;
   final dynamic value;
   final dynamic Function(dynamic, String?) onChanged;
   final String? Function(Map<String, dynamic>?)? validator;
 
-  const UserProfileDropdownField({
+  const AssignedToDropdownField({
     Key? key,
     required this.onChanged,
     required this.label,

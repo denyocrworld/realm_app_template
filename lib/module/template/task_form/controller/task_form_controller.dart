@@ -4,28 +4,17 @@ import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
 mixin TaskFormDataController {
-  String? taskName;
-  String? description;
-  String? status = "Pending";
-  UserProfile? assignedTo;
+  //@VARIABLE
 
   loadCurrentData(Task current) {
-    taskName = current.taskName;
-    description = current.description;
-    status = current.status;
-    assignedTo = current.assignedTo;
+    //@CURRENT_DATA
   }
 
   createData() {
     TaskService.instance.add(
       Task(
         ObjectId(),
-        createdAt: DateTime.now(),
-        createdBy: userProfile,
-        assignedTo: assignedTo,
-        taskName: taskName,
-        description: description,
-        status: status,
+        //@CREATE_DATA
       ),
     );
   }
@@ -34,10 +23,7 @@ mixin TaskFormDataController {
     TaskService.instance.update(
       id: current.id,
       update: (item) {
-        item.taskName = taskName;
-        item.assignedTo = assignedTo;
-        item.description = description;
-        item.status = status;
+        //@UPDATE_DATA
       },
     );
   }

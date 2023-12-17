@@ -3,50 +3,52 @@ import 'package:realm/realm.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 
-mixin TaskFormDataController {
-  String? taskName;
-  String? description;
-  String? status = "Pending";
-  UserProfile? assignedTo;
+mixin UserProfileFormDataController {
+  String? name;
+String? email;
+String? password;
+String? role;
+String? photo;
 
-  loadCurrentData(Task current) {
-    taskName = current.taskName;
-    description = current.description;
-    status = current.status;
-    assignedTo = current.assignedTo;
+  loadCurrentData(UserProfile current) {
+    name = current.name;
+email = current.email;
+password = current.password;
+role = current.role;
+photo = current.photo;
   }
 
   createData() {
-    TaskService.instance.add(
-      Task(
+    UserProfileService.instance.add(
+      UserProfile(
         ObjectId(),
-        createdAt: DateTime.now(),
-        createdBy: userProfile,
-        assignedTo: assignedTo,
-        taskName: taskName,
-        description: description,
-        status: status,
+        name: name,
+email: email,
+password: password,
+role: role,
+photo: photo,
       ),
     );
   }
 
-  updateData(Task current) {
-    TaskService.instance.update(
+  updateData(UserProfile current) {
+    UserProfileService.instance.update(
       id: current.id,
       update: (item) {
-        item.taskName = taskName;
-        item.assignedTo = assignedTo;
-        item.description = description;
-        item.status = status;
+        item.name = name;
+item.email = email;
+item.password = password;
+item.role = role;
+item.photo = photo;
       },
     );
   }
 }
 
-class TaskFormController extends State<TaskFormView>
-    with BasicState, TaskFormDataController {
-  static late TaskFormController instance;
-  late TaskFormView view;
+class UserProfileFormController extends State<UserProfileFormView>
+    with BasicState, UserProfileFormDataController {
+  static late UserProfileFormController instance;
+  late UserProfileFormView view;
 
   @override
   void initState() {
