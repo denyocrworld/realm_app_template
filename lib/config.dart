@@ -9,12 +9,16 @@ const bool DISCONNECTED_MODE = true;
 
 //TODO: Setiap membuat model baru, wajib di tambahkan disini!
 List<SchemaObject> schemaList = [
+  //@SCHEMA_LIST
   UserProfile.schema,
   Task.schema,
+  //@:SCHEMA_LIST
 ];
 
 //TODO: Setiap membuat service baru, wajib di tambahkan disini!
 List<RealmBaseService> services = [
+  //@SERVICE_LIST
   UserProfileService.instance,
   TaskService.instance,
+  //@:SERVICE_LIST
 ];
