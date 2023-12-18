@@ -11,7 +11,7 @@ class QMemoField extends StatefulWidget {
   final int? maxLines;
   final Function(String) onChanged;
 
-  const QMemoField({
+  QMemoField({
     Key? key,
     required this.label,
     this.value,
@@ -34,7 +34,7 @@ class _QMemoFieldState extends State<QMemoField> {
     focusNode.addListener(() {
       print("focusNodeListener");
       if (focusNode.hasFocus) {
-        Future.delayed(const Duration(milliseconds: 300), () {
+        Future.delayed(Duration(milliseconds: 300), () {
           WidgetsBinding.instance
               .addPostFrameCallback((_) => Scrollable.ensureVisible(
                     key.currentContext!,
@@ -50,7 +50,7 @@ class _QMemoFieldState extends State<QMemoField> {
   @override
   Widget build(BuildContext context) {
     if (focusNode.hasFocus) {
-      Future.delayed(const Duration(milliseconds: 300), () {
+      Future.delayed(Duration(milliseconds: 300), () {
         WidgetsBinding.instance
             .addPostFrameCallback((_) => Scrollable.ensureVisible(
                   key.currentContext!,
@@ -60,7 +60,7 @@ class _QMemoFieldState extends State<QMemoField> {
       });
     }
     return Container(
-      margin: const EdgeInsets.only(
+      margin: EdgeInsets.only(
         bottom: 12.0,
       ),
       child: TextFormField(
@@ -71,8 +71,12 @@ class _QMemoFieldState extends State<QMemoField> {
         maxLength: widget.maxLength,
         maxLines: widget.maxLines ?? 6,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 24.0,
+          ),
           labelText: widget.label,
-          suffixIcon: const Icon(
+          suffixIcon: Icon(
             Icons.text_format,
           ),
           helperText: widget.helper,

@@ -1,4 +1,3 @@
-//#TEMPLATE reuseable_image_picker
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -6,15 +5,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+const String _CLOUDINARY_CLOUD_NAME = "dotz74j1p";
+const String _CLOUDINARY_API_KEY = "983354314759691";
+const String _CLOUDINARY_UPLOAD_PRESET = "yogjjkoh";
+
 class QImagePicker extends StatefulWidget {
   final String label;
   final String? value;
   final String? hint;
   final String? helper;
   final String? Function(String?)? validator;
-  final bool obscure;
   final Function(String) onChanged;
-  final String? provider;
+  final List<String> extensions;
+  final bool enabled;
 
   QImagePicker({
     Key? key,
@@ -24,8 +27,8 @@ class QImagePicker extends StatefulWidget {
     this.hint,
     this.helper,
     required this.onChanged,
-    this.obscure = false,
-    this.provider = "cloudinary",
+    this.extensions = const ["jpg", "png"],
+    this.enabled = true,
   }) : super(key: key);
 
   @override
@@ -48,10 +51,7 @@ class _QImagePickerState extends State<QImagePicker> {
   Future<String?> getFileMultiplePlatform() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: [
-        "png",
-        "jpg",
-      ],
+      allowedExtensions: widget.extensions,
       allowMultiple: false,
     );
     if (result == null) return null;
@@ -68,47 +68,18 @@ class _QImagePickerState extends State<QImagePicker> {
     return filePath;
   }
 
-  Future<String?> uploadFile(String filePath) async {
-    if (widget.provider == "cloudinary") {
-      return await uploadToCloudinary(filePath);
-    }
-    return await uploadToImgBB(filePath);
-  }
-
-  Future<String> uploadToImgBB(String filePath) async {
-    final formData = FormData.fromMap({
-      'image': MultipartFile.fromBytes(
-        File(filePath).readAsBytesSync(),
-        filename: "upload.jpg",
-      ),
-    });
-
-    var res = await Dio().post(
-      'https://api.imgbb.com/1/upload?key=b55ef3fd02b80ab180f284e479acd7c4',
-      data: formData,
-    );
-
-    var data = res.data["data"];
-    var url = data["url"];
-    widget.onChanged(url);
-    return url;
-  }
-
   Future<String> uploadToCloudinary(String filePath) async {
-    String cloudName = "dotz74j1p";
-    String apiKey = "983354314759691";
-
     final formData = FormData.fromMap({
       'file': MultipartFile.fromBytes(
         File(filePath).readAsBytesSync(),
         filename: "upload.jpg",
       ),
-      'upload_preset': 'yogjjkoh',
-      'api_key': apiKey,
+      'upload_preset': _CLOUDINARY_UPLOAD_PRESET,
+      'api_key': _CLOUDINARY_API_KEY,
     });
 
     var res = await Dio().post(
-      'https://api.cloudinary.com/v1_1/$cloudName/image/upload',
+      'https://api.cloudinary.com/v1_1/$_CLOUDINARY_CLOUD_NAME/image/upload',
       data: formData,
     );
 
@@ -116,12 +87,10 @@ class _QImagePickerState extends State<QImagePicker> {
     return url;
   }
 
-  browsePhoto() async {
+  browseFile() async {
     if (loading) return;
 
     String? filePath;
-    loading = true;
-    setState(() {});
 
     if (!kIsWeb && Platform.isWindows) {
       filePath = await getFileMultiplePlatform();
@@ -130,8 +99,13 @@ class _QImagePickerState extends State<QImagePicker> {
     }
     if (filePath == null) return;
 
-    imageUrl = await uploadFile(filePath);
+    loading = true;
+    setState(() {});
+
+    imageUrl = await uploadToCloudinary(filePath);
+
     loading = false;
+    setState(() {});
 
     if (imageUrl != null) {
       widget.onChanged(imageUrl!);
@@ -162,7 +136,7 @@ class _QImagePickerState extends State<QImagePicker> {
               top: 8.0,
             ),
             decoration: BoxDecoration(
-              color: loading ? Colors.blueGrey[900] : null,
+              color: loading ? Colors.blueGrey[400] : null,
               image: loading
                   ? null
                   : DecorationImage(
@@ -182,8 +156,6 @@ class _QImagePickerState extends State<QImagePicker> {
             child: Visibility(
               visible: loading == true,
               child: SizedBox(
-                width: 30,
-                height: 30,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -202,6 +174,7 @@ class _QImagePickerState extends State<QImagePicker> {
                       "Uploading...",
                       style: TextStyle(
                         fontSize: 9.0,
+                        color: Colors.white,
                       ),
                     ),
                   ],
@@ -220,38 +193,50 @@ class _QImagePickerState extends State<QImagePicker> {
                 },
                 enabled: true,
                 builder: (FormFieldState<bool> field) {
-                  return TextFormField(
-                    controller: controller,
-                    obscureText: widget.obscure,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: widget.label,
-                      labelStyle: TextStyle(
-                        color: Colors.blueGrey,
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: controller,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            labelText: widget.label,
+                            labelStyle: TextStyle(
+                              color: Colors.blueGrey,
+                            ),
+                            helperText: widget.helper,
+                            hintText: widget.hint,
+                            errorText: field.errorText,
+                          ),
+                          onChanged: (value) {
+                            widget.onChanged(value);
+                          },
+                        ),
                       ),
-                      suffixIcon: Transform.scale(
-                        scale: 0.8,
-                        child: SizedBox(
-                          width: 80.0,
+                      const SizedBox(
+                        width: 6.0,
+                      ),
+                      if (widget.enabled)
+                        Container(
+                          width: 50.0,
+                          height: 46.0,
+                          margin: const EdgeInsets.only(
+                            right: 4.0,
+                          ),
                           child: ElevatedButton(
-                            style: Theme.of(context).elevatedButtonTheme.style,
-                            onPressed: () => browsePhoto(),
-                            child: Text(
-                              "Browse",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                              ),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.all(0.0),
+                              backgroundColor: Colors.grey[500],
+                            ),
+                            onPressed: () => browseFile(),
+                            child: Icon(
+                              Icons.file_upload,
+                              size: 24.0,
                             ),
                           ),
                         ),
-                      ),
-                      helperText: widget.helper,
-                      hintText: widget.hint,
-                      errorText: field.errorText,
-                    ),
-                    onChanged: (value) {
-                      widget.onChanged(value);
-                    },
+                    ],
                   );
                 }),
           ),
@@ -260,5 +245,3 @@ class _QImagePickerState extends State<QImagePicker> {
     );
   }
 }
-
-//#END
