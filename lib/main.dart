@@ -49,6 +49,32 @@ class _MainAppState extends State<MainApp> {
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
       home: mainView,
+      builder: (context, child) {
+        return Stack(
+          children: [
+            child!,
+            Positioned(
+              right: 10,
+              bottom: 100,
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => Get.to(ModuleDashboard()),
+                  child: CircleAvatar(
+                    radius: 12.0,
+                    backgroundColor: Colors.red,
+                    child: Icon(
+                      Icons.bug_report,
+                      color: Colors.white,
+                      size: 16.0,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
