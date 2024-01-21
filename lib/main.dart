@@ -35,8 +35,9 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
+    Widget mainView = LoginView();
     if (loading)
-      return Scaffold(
+      mainView = Scaffold(
         body: Center(
           child: Text("Loading.."),
         ),
@@ -47,7 +48,7 @@ class _MainAppState extends State<MainApp> {
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
-      home: LoginView(),
+      home: mainView,
     );
   }
 }
