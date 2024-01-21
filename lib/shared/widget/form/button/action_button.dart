@@ -5,10 +5,12 @@ import 'package:realm_app/core.dart';
 class QActionButton extends StatelessWidget {
   final String label;
   final Function onPressed;
+  final Color? color;
   const QActionButton({
     Key? key,
     required this.label,
     required this.onPressed,
+    this.color,
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class QActionButton extends StatelessWidget {
       height: height + (padding * 2),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryColor,
+          backgroundColor: color ?? primaryColor,
         ),
         onPressed: () => onPressed(),
         child: Text(

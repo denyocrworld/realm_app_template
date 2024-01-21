@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:realm/realm.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
 

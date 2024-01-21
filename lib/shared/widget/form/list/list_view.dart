@@ -3,11 +3,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
-
 import '../../dismissible/dismissible.dart';
 
-class QListView extends StatefulWidget {
-  static Map<String, QListViewState> instance = {};
+class GorelaxListView extends StatefulWidget {
+  static Map<String, GorelaxListViewState> instance = {};
   final String? id;
   final Function(int page) futureBuilder;
   final Function(Map<String, dynamic> item)? onDismiss;
@@ -27,7 +26,7 @@ class QListView extends StatefulWidget {
   }
 
   final Function(int, Map<String, dynamic>) builder;
-  const QListView({
+  const GorelaxListView({
     this.id,
     required this.builder,
     required this.futureBuilder,
@@ -44,10 +43,10 @@ class QListView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<QListView> createState() => QListViewState();
+  State<GorelaxListView> createState() => GorelaxListViewState();
 }
 
-class QListViewState extends State<QListView> {
+class GorelaxListViewState extends State<GorelaxListView> {
   bool loading = true;
   bool bottomLoading = false;
   Response? response;
@@ -121,7 +120,7 @@ class QListViewState extends State<QListView> {
   void initState() {
     super.initState();
     id = widget.id ?? const Uuid().v4();
-    QListView.instance[id] = this;
+    GorelaxListView.instance[id] = this;
     initScrollController();
     onLoading();
   }
@@ -129,7 +128,7 @@ class QListViewState extends State<QListView> {
   @override
   void dispose() {
     super.dispose();
-    QListView.instance.remove(id);
+    GorelaxListView.instance.remove(id);
   }
 
   reload() async {

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 ThemeData getDefaultTheme() {
   return ThemeData().copyWith(
-    useMaterial3: false,
     primaryColor: primaryColor,
     scaffoldBackgroundColor: scaffoldBackgroundColor,
     colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),

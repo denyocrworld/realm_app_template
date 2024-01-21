@@ -1,10 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
-import 'package:realm_app/shared/widget/realm/realm_delete.dart';
 
 class UserTaskListView extends StatefulWidget {
   UserTaskListView({Key? key}) : super(key: key);

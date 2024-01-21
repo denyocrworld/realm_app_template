@@ -1,4 +1,4 @@
-//#TEMPLATE reuseable_category_picker
+//#TEMPLATE reuseable_tag_picker
 import 'package:flutter/material.dart';
 
 class QTagPicker extends StatefulWidget {

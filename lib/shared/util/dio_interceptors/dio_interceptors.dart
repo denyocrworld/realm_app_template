@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 import 'package:realm_app/core.dart';
 
 Dio dio = Dio();
@@ -20,15 +20,13 @@ class Diointerceptors {
           // you can resolve a `Response` using `handler.resolve(response)`.
           // If you want to reject the request with a error message,
           // you can reject with a `DioException` using `handler.reject(dioError)`.
-          print(options.uri);
-          print(options.headers);
           return handler.next(options);
         },
         onResponse: (Response response, ResponseInterceptorHandler handler) {
           // Do something with response data.
           // If you want to reject the request with a error message,
           // you can reject a `DioException` object using `handler.reject(dioError)`.
-          print("URL: ${response.realUri}");
+          // print("URL: ${response.realUri}");
           return handler.next(response);
         },
         onError: (DioException e, ErrorInterceptorHandler handler) {
@@ -37,10 +35,10 @@ class Diointerceptors {
           // you can resolve a `Response` object using `handler.resolve(response)`.
 
           // showInfoDialog("Hello");
-          const snackBar = SnackBar(
-            content: Text('Bad Connection'),
-          );
-          ScaffoldMessenger.of(Get.currentContext).showSnackBar(snackBar);
+          // const snackBar = SnackBar(
+          //   content: Text('Bad Connection'),
+          // );
+          // ScaffoldMessenger.of(Get.currentContext).showSnackBar(snackBar);
           return handler.next(e);
         },
       ),

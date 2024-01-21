@@ -1,6 +1,6 @@
-import 'package:realm_app/core.dart';
+import 'package:intl/intl.dart';
 
-extension DateExtension on DateTime {
+extension DateTimeExtension on DateTime {
   String get yMd {
     return DateFormat("y-M-d").format(this);
   }
@@ -15,5 +15,9 @@ extension DateExtension on DateTime {
 
   String get kkss {
     return DateFormat("kk:ss").format(this);
+  }
+
+  String get kkmm {
+    return DateFormat("kk:mm").format(this);
   }
 }

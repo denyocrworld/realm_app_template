@@ -1,3 +1,4 @@
+//#TEMPLATE reuseable_file_picker
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
@@ -235,3 +236,5 @@ class _QFilePickerState extends State<QFilePicker> {
     );
   }
 }
+
+//#END
