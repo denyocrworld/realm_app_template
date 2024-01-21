@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await RealmAppService.init();
   runMainApp();
 }
 
@@ -19,8 +18,30 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
+  bool loading = true;
+  @override
+  void initState() {
+    super.initState();
+    initialize();
+  }
+
+  initialize() async {
+    loading = true;
+    setState(() {});
+    await RealmAppService.init();
+    loading = false;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (loading)
+      return Scaffold(
+        body: Center(
+          child: Text("Loading.."),
+        ),
+      );
+
     return MaterialApp(
       title: 'RealmApp',
       navigatorKey: Get.navigatorKey,
