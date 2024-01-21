@@ -7,51 +7,32 @@ class AdminMainNavigationView extends StatefulWidget {
   Widget build(context, AdminMainNavigationController controller) {
     controller.view = this;
 
-    return DefaultTabController(
-      length: 4,
-      initialIndex: controller.selectedIndex,
-      child: Scaffold(
-        body: IndexedStack(
-          index: controller.selectedIndex,
-          children: [
-            AdminDashboardView(),
-            AdminTaskListView(),
-            AdminUserListView(),
-            AdminProfileView(),
-          ],
+    return QNavigation(
+      mode: QNavigationMode.nav2,
+      pages: [
+        AdminDashboardView(),
+        AdminTaskListView(),
+        AdminUserListView(),
+        AdminProfileView(),
+      ],
+      menus: [
+        NavigationMenu(
+          icon: Icons.dashboard,
+          label: "Dashboard",
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: controller.selectedIndex,
-          onTap: (newIndex) => controller.updateIndex(newIndex),
-          type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard,
-              ),
-              label: "Dashboard",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.list,
-              ),
-              label: "Tasks",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.people,
-              ),
-              label: "Users",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
-              label: "Profile",
-            ),
-          ],
+        NavigationMenu(
+          icon: Icons.list,
+          label: "Tasks",
         ),
-      ),
+        NavigationMenu(
+          icon: Icons.people,
+          label: "Users",
+        ),
+        NavigationMenu(
+          icon: Icons.person,
+          label: "Profile",
+        ),
+      ],
     );
   }
 
