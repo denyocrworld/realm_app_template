@@ -10,8 +10,8 @@ const bool DISCONNECTED_MODE = true;
 //TODO: Setiap membuat model baru, wajib di tambahkan disini!
 List<SchemaObject> schemaList = [
   //@SCHEMA_LIST
-  UserProfile.schema,
   Task.schema,
+  UserProfile.schema,
   //@:SCHEMA_LIST
 ];
 
