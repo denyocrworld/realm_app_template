@@ -40,12 +40,14 @@ class TaskListView extends StatefulWidget {
                 horizontal: 12.0,
               ),
               itemBuilder: (item, index) {
+                //@SEARCH
                 bool searchCondition = item.taskName!
                     .toLowerCase()
                     .contains(controller.search.toLowerCase());
                 if (controller.search.isNotEmpty && !searchCondition) {
                   return SizedBox.shrink();
                 }
+                //@:SEARCH
 
                 return QDismissible(
                   onDismiss: () => controller.delete(item),

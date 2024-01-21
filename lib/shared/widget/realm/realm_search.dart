@@ -52,20 +52,6 @@ class _RealmSearchState extends State<RealmSearch> {
                     widget.onSearch(value);
                   },
                 ),
-                const SizedBox(
-                  height: 12.0,
-                ),
-                ListView.builder(
-                  itemCount: 3,
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text("History 1"),
-                    );
-                  },
-                ),
               ],
             ),
           ),
