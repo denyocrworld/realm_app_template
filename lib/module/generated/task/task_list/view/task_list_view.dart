@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
-import 'package:realm_app/shared/widget/realm/realm_search.dart';
 
 class TaskListView extends StatefulWidget {
   TaskListView({Key? key}) : super(key: key);

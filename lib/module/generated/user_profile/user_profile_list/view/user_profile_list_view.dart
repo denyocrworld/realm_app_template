@@ -13,6 +13,10 @@ class UserProfileListView extends StatefulWidget {
         title: Text("User Profile List"),
         actions: [
           RealmDelete(UserProfileService.instance),
+          RealmSearch(
+            value: controller.search,
+            onSearch: (value) => controller.updateSearch(value),
+          ),
         ],
       ),
       body: Column(
@@ -24,6 +28,15 @@ class UserProfileListView extends StatefulWidget {
                 horizontal: 12.0,
               ),
               itemBuilder: (item, index) {
+                //@SEARCH
+                bool searchCondition = item.name!
+                    .toLowerCase()
+                    .contains(controller.search.toLowerCase());
+                if (controller.search.isNotEmpty && !searchCondition) {
+                  return SizedBox.shrink();
+                }
+                //@:SEARCH
+
                 return QDismissible(
                   onDismiss: () => controller.delete(item),
                   child: ListTile(

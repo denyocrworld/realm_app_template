@@ -23,4 +23,12 @@ class UserProfileListController extends State<UserProfileListView> {
     UserProfileService.instance.delete(item);
     hideLoading();
   }
+
+  //@SEARCH
+  String search = "";
+  updateSearch(String value) {
+    search = value;
+    setState(() {});
+  }
+  //@:SEARCH
 }
