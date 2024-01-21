@@ -31,4 +31,12 @@ class TaskListController extends State<TaskListView> {
     setState(() {});
   }
   //@:STATUS_FILTER
+
+  //@SEARCH
+  String search = "";
+  updateSearch(String value) {
+    search = value;
+    setState(() {});
+  }
+  //@:SEARCH
 }

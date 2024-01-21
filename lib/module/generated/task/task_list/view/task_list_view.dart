@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:realm_app/core.dart';
 import 'package:realm_app/model/model.dart';
+import 'package:realm_app/shared/widget/realm/realm_search.dart';
 
 class TaskListView extends StatefulWidget {
   TaskListView({Key? key}) : super(key: key);
@@ -13,6 +14,10 @@ class TaskListView extends StatefulWidget {
         title: Text("Task List"),
         actions: [
           RealmDelete(TaskService.instance),
+          RealmSearch(
+            value: controller.search,
+            onSearch: (value) => controller.updateSearch(value),
+          ),
         ],
       ),
       body: Column(
@@ -35,6 +40,13 @@ class TaskListView extends StatefulWidget {
                 horizontal: 12.0,
               ),
               itemBuilder: (item, index) {
+                bool searchCondition = item.taskName!
+                    .toLowerCase()
+                    .contains(controller.search.toLowerCase());
+                if (controller.search.isNotEmpty && !searchCondition) {
+                  return SizedBox.shrink();
+                }
+
                 return QDismissible(
                   onDismiss: () => controller.delete(item),
                   child: ListTile(
