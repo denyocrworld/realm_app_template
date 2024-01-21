@@ -1,5 +1,6 @@
 //#TEMPLATE reuseable_category_picker
 import 'package:flutter/material.dart';
+import 'package:realm_app/shared/theme/theme_config.dart';
 
 class QCategoryPicker extends StatefulWidget {
   final List<Map<String, dynamic>> items;
@@ -130,17 +131,16 @@ class _QCategoryPickerState extends State<QCategoryPicker> {
                         }
 
                         return Container(
-                          margin: const EdgeInsets.only(
+                          margin: EdgeInsets.only(
                             right: 12.0,
                           ),
                           child: ElevatedButton(
-                            style: selected
-                                ? null
-                                : ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        Theme.of(context).disabledColor,
-                                    elevation: 0.0,
-                                  ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: selected
+                                  ? primaryColor
+                                  : Theme.of(context).disabledColor,
+                              elevation: 0.0,
+                            ),
                             onPressed: () => updateIndex(index),
                             child: Text(item["label"]),
                           ),
