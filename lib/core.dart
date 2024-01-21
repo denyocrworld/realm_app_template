@@ -107,6 +107,7 @@ export 'package:realm_app/shared/widget/realm/realm_counter.dart';
 export 'package:realm_app/shared/widget/realm/realm_delete.dart';
 export 'package:realm_app/shared/widget/realm/realm_document.dart';
 export 'package:realm_app/shared/widget/realm/realm_list.dart';
+export 'package:realm_app/shared/widget/realm/realm_search.dart';
 export 'package:realm_app/shared/widget/statistic/statistic.dart';
 export 'package:realm_app/shared/widget/typography/heading.dart';
 export 'package:realm_app/shared/widget/widget_demo/widget_demo.dart';
