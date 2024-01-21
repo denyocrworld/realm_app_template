@@ -37,8 +37,8 @@ class _MapViewerState extends State<MapViewer> {
         FlutterMap(
           mapController: widget.controller,
           options: MapOptions(
-            center: LatLng(latitude, longitude),
-            zoom: 16.0,
+            initialCenter: LatLng(latitude, longitude),
+            initialZoom: 16.0,
             onPositionChanged: (pos, _) {
               if (widget.onPositionChanged != null) {
                 widget.onPositionChanged!(pos, _);
