@@ -6,44 +6,27 @@ class UserMainNavigationView extends StatefulWidget {
 
   Widget build(context, UserMainNavigationController controller) {
     controller.view = this;
-    return DefaultTabController(
-      length: 3,
-      initialIndex: controller.selectedIndex,
-      child: Scaffold(
-        body: IndexedStack(
-          index: controller.selectedIndex,
-          children: [
-            UserDashboardView(),
-            UserTaskListView(),
-            UserProfileView(),
-          ],
+    return QNavigation(
+      mode: QNavigationMode.nav2,
+      pages: [
+        UserDashboardView(),
+        UserTaskListView(),
+        UserProfileView(),
+      ],
+      menus: [
+        NavigationMenu(
+          icon: Icons.dashboard,
+          label: "Dashboard",
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: controller.selectedIndex,
-          onTap: (newIndex) => controller.updateIndex(newIndex),
-          type: BottomNavigationBarType.fixed,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard,
-              ),
-              label: "Dashboard",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.list,
-              ),
-              label: "Tasks",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
-              label: "Profile",
-            ),
-          ],
+        NavigationMenu(
+          icon: Icons.list,
+          label: "Tasks",
         ),
-      ),
+        NavigationMenu(
+          icon: Icons.person,
+          label: "Profile",
+        ),
+      ],
     );
   }
 
