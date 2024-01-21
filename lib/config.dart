@@ -19,6 +19,5 @@ List<SchemaObject> schemaList = [
 List<RealmBaseService> services = [
   //@SERVICE_LIST
   UserProfileService.instance,
-  TaskService.instance,
   //@:SERVICE_LIST
 ];
