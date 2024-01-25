@@ -22,6 +22,10 @@ export 'package:realm_app/module/admin/admin_user_list/controller/admin_user_lis
 export 'package:realm_app/module/admin/admin_user_list/view/admin_user_list_view.dart';
 export 'package:realm_app/module/auth/login/controller/login_controller.dart';
 export 'package:realm_app/module/auth/login/view/login_view.dart';
+export 'package:realm_app/module/generated/product/product_form/controller/product_form_controller.dart';
+export 'package:realm_app/module/generated/product/product_form/view/product_form_view.dart';
+export 'package:realm_app/module/generated/product/product_list/controller/product_list_controller.dart';
+export 'package:realm_app/module/generated/product/product_list/view/product_list_view.dart';
 export 'package:realm_app/module/generated/task/task_form/controller/task_form_controller.dart';
 export 'package:realm_app/module/generated/task/task_form/view/task_form_view.dart';
 export 'package:realm_app/module/generated/task/task_list/controller/task_list_controller.dart';
@@ -43,6 +47,8 @@ export 'package:realm_app/module/user/user_task_list/view/user_task_list_view.da
 export 'package:realm_app/module_dashboard.dart';
 export 'package:realm_app/service/auth_service/auth_service.dart';
 export 'package:realm_app/service/data_service/data_service.dart';
+export 'package:realm_app/service/order_service/order_service.dart';
+export 'package:realm_app/service/product_service/product_service.dart';
 export 'package:realm_app/service/realm_service/realm_app_service.dart';
 export 'package:realm_app/service/realm_service/realm_base_service.dart';
 export 'package:realm_app/service/realm_service/realm_syncronizer.dart';

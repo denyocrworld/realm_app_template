@@ -37,14 +37,6 @@ class ModuleDashboard extends StatelessWidget {
             "label": "ProductFormView",
             "view": ProductFormView(),
           },
-          {
-            "label": "OrderListView",
-            "view": OrderListView(),
-          },
-          {
-            "label": "OrderFormView",
-            "view": OrderFormView(),
-          },
         ];
 
         return GridView.builder(

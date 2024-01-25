@@ -90,7 +90,7 @@ class _Order {
   late String? customerName;
 
   @MapTo("products")
-  List<_Product>? items;
+  List<_Product> items = [];
 
   @MapTo("total")
   late double? total;
