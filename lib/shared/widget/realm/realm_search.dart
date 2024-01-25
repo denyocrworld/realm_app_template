@@ -39,13 +39,6 @@ class _RealmSearchState extends State<RealmSearch> {
                       Icons.search,
                       color: Colors.blueGrey[900],
                     ),
-                    suffixIcon: Container(
-                      padding: EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.sort,
-                        color: Colors.blueGrey[900],
-                      ),
-                    ),
                   ),
                   onFieldSubmitted: (value) {
                     Navigator.pop(context);

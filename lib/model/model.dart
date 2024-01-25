@@ -1,4 +1,5 @@
 import 'package:realm/realm.dart';
+import 'package:realm_app/model/model_util.dart';
 part 'model.g.dart';
 
 @RealmModel()
@@ -17,6 +18,7 @@ class _UserProfile {
   late String? password;
 
   @MapTo("role")
+  @DropDownValues("role")
   late String? role;
 
   @MapTo("photo")
