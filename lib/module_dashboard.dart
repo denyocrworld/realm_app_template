@@ -29,6 +29,22 @@ class ModuleDashboard extends StatelessWidget {
             "label": "TaskFormView",
             "view": TaskFormView(),
           },
+          {
+            "label": "ProductListView",
+            "view": ProductListView(),
+          },
+          {
+            "label": "ProductFormView",
+            "view": ProductFormView(),
+          },
+          {
+            "label": "OrderListView",
+            "view": OrderListView(),
+          },
+          {
+            "label": "OrderFormView",
+            "view": OrderFormView(),
+          },
         ];
 
         return GridView.builder(

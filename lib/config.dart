@@ -12,6 +12,8 @@ List<SchemaObject> schemaList = [
   //@SCHEMA_LIST
   Task.schema,
   UserProfile.schema,
+  Product.schema,
+  Order.schema,
   //@:SCHEMA_LIST
 ];
 
@@ -20,5 +22,7 @@ List<RealmBaseService> services = [
   //@SERVICE_LIST
   UserProfileService.instance,
   TaskService.instance,
+  ProductService.instance,
+  OrderService.instance,
   //@:SERVICE_LIST
 ];
