@@ -11,6 +11,7 @@ class AdminMainNavigationView extends StatefulWidget {
       mode: QNavigationMode.nav2,
       pages: [
         AdminDashboardView(),
+        AdminPosView(),
         AdminTaskListView(),
         AdminUserListView(),
         AdminProfileView(),
@@ -19,6 +20,10 @@ class AdminMainNavigationView extends StatefulWidget {
         NavigationMenu(
           icon: Icons.dashboard,
           label: "Dashboard",
+        ),
+        NavigationMenu(
+          icon: Icons.point_of_sale,
+          label: "POS",
         ),
         NavigationMenu(
           icon: Icons.list,

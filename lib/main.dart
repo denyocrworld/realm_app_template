@@ -55,7 +55,7 @@ class _MainAppState extends State<MainApp> {
             child!,
             Positioned(
               right: 10,
-              bottom: 100,
+              bottom: 10,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(

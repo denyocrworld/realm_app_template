@@ -40,6 +40,9 @@ class _QNumberFieldState extends State<QNumberField> {
   void initState() {
     super.initState();
     value = widget.value?.replaceAll(RegExp(r'[^0-9.]'), '');
+    if (value.toString().endsWith(".0")) {
+      value = value.toString().replaceAll(".0", "");
+    }
     print("value: $value");
     print("value: ${widget.value}");
     controller = TextEditingController();
@@ -50,6 +53,10 @@ class _QNumberFieldState extends State<QNumberField> {
     if (widget.pattern != null) {
       final currencyFormat = NumberFormat(widget.pattern, widget.locale);
       var pValue = num.tryParse(value.toString()) ?? 0;
+
+      if (pValue.toString().endsWith(".0")) {
+        pValue = num.tryParse(pValue.toString().replaceAll(".0", "")) ?? 0;
+      }
       return currencyFormat.format(pValue);
     }
     return value;

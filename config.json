@@ -12,7 +12,8 @@
         "admin/admin_user_list",
         "admin/admin_user_form",
         "admin/admin_task_list",
-        "admin/admin_task_form"
+        "admin/admin_task_form",
+        "admin/admin_pos"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

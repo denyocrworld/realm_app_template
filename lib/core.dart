@@ -10,6 +10,8 @@ export 'package:realm_app/module/admin/admin_dashboard/controller/admin_dashboar
 export 'package:realm_app/module/admin/admin_dashboard/view/admin_dashboard_view.dart';
 export 'package:realm_app/module/admin/admin_main_navigation/controller/admin_main_navigation_controller.dart';
 export 'package:realm_app/module/admin/admin_main_navigation/view/admin_main_navigation_view.dart';
+export 'package:realm_app/module/admin/admin_pos/controller/admin_pos_controller.dart';
+export 'package:realm_app/module/admin/admin_pos/view/admin_pos_view.dart';
 export 'package:realm_app/module/admin/admin_profile/controller/admin_profile_controller.dart';
 export 'package:realm_app/module/admin/admin_profile/view/admin_profile_view.dart';
 export 'package:realm_app/module/admin/admin_task_form/controller/admin_task_form_controller.dart';
